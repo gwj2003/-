@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-
 typedef int ElemType;				  /* 数据元素类型  */
+
 typedef  struct LNode
 {
 	ElemType data;                    /* 数据子域      */
@@ -18,11 +18,13 @@ void  out_L(LNode* L);
 void  insert_L(LNode* L, int i, ElemType e);
 ElemType delete_L(LNode* L, int i);
 int locate_L(LNode* L, ElemType e);
+
 main()
 {
 	int i, k, loc;
 	ElemType e, x;
 	char ch;
+	printf("\n在该程序中请输入回车以执行下一步\n");
 	do {
 		printf("\n======================================");
 		printf("\n\n     1. 建立线性链表 ");
@@ -32,7 +34,14 @@ main()
 		printf("\n\n     5. 结束程序运行");
 		printf("\n\n======================================");
 		printf("\n     请输入您的选择 (1,2,3,4,5)\n");
-		scanf_s("%d", &k);
+		do
+		{
+			scanf_s("%d", &k);
+			if (k < 1 || k > 5)
+			{
+				printf("\n     请输入1,2,3,4,5\n");
+			}
+		} while (k < 1 || k > 5);
 		switch (k)
 		{
 		case 1:
@@ -64,9 +73,13 @@ main()
 				printf(" 未找到");
 			else printf(" 已找到，元素位置是 %d", loc);
 		} break;
+		case 5:
+		{
+			printf("\n敲击回车键结束程序\n");
+			ch = getchar();
+		} break;
 		} /*  switch  */
 	} while (k >= 1 && k < 5);
-	printf("\n敲击回车键结束程序\n");
 	ch = getchar();
 } /* main */
 
@@ -93,7 +106,6 @@ LNode* creat_L()
 	return(h);
 } /* creat_L  */
 
-
 /* 输出链表中的数据元素*/
 void out_L(LNode* L)
 {
@@ -116,7 +128,7 @@ void insert_L(LNode* L, int i, ElemType e)
 	j = 0;
 	while (p->rnext->data != NULL && j < i - 1)
 	{
-		p = p->rnext; 
+		p = p->rnext;
 		j++;
 	}
 	if (p->rnext->data == NULL || j > i - 1)
@@ -139,7 +151,7 @@ int locate_L(LNode* L, ElemType e)
 	p = L->rnext;
 	while (p->data != NULL && p->data != e)
 	{
-		p = p->rnext; 
+		p = p->rnext;
 		j++;
 	}
 	if (p->data != NULL)
@@ -160,9 +172,13 @@ ElemType delete_L(LNode* L, int i)
 		j++;
 	}
 	if (p->rnext->data == NULL || j > i - 1)
+	{
 		printf("\n i ERROR !\n");
+		return -111;
+	}
 	else
 	{
+		p = p->rnext;
 		p->rnext->lnext = p->lnext;
 		p->lnext->rnext = p->rnext;
 	}
