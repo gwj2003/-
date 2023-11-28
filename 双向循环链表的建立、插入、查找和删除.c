@@ -1,16 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-
-typedef int ElemType;				  /* 数据元素类型  */
-
+typedef int ElemType;				/* 数据元素类型  */
 typedef  struct LNode
 {
-	ElemType data;                    /* 数据子域      */
-	struct LNode* lnext, * rnext;     /* 指针子域      */
-}LNode;                               /* 结点结构类型  */
-
-LNode* L;							  /* 头指针        */
+	ElemType data;					/* 数据子域      */
+	struct LNode* lnext, * rnext;	/* 指针子域      */
+}LNode;								/* 结点结构类型  */
+LNode* L;							/* 头指针        */
 
 /*  函数声明  */
 LNode* creat_L();
@@ -19,7 +15,7 @@ void  insert_L(LNode* L, int i, ElemType e);
 ElemType delete_L(LNode* L, int i);
 int locate_L(LNode* L, ElemType e);
 
-main()
+int main()
 {
 	int i, k, loc;
 	ElemType e, x;
@@ -37,10 +33,7 @@ main()
 		do
 		{
 			scanf_s("%d", &k);
-			if (k < 1 || k > 5)
-			{
-				printf("\n     请输入1,2,3,4,5\n");
-			}
+			if (k < 1 || k > 5){printf("\n     请输入1,2,3,4,5\n");}
 		} while (k < 1 || k > 5);
 		switch (k)
 		{
@@ -61,7 +54,7 @@ main()
 			printf(" i=?\n");
 			scanf_s("%d", &i);
 			x = delete_L(L, i);
-			printf("\n x=%d\n", x);
+			printf(" x=%d\n", x);
 			out_L(L);
 		} break;
 		case 4:
@@ -83,7 +76,7 @@ main()
 	ch = getchar();
 } /* main */
 
-/*  建立线性链表 （ 11，22 ，33 ） */
+/*  建立线性链表 */
 LNode* creat_L()
 {
 	LNode* h, * p, * s;  ElemType x;
@@ -109,8 +102,8 @@ LNode* creat_L()
 /* 输出链表中的数据元素*/
 void out_L(LNode* L)
 {
+	printf("目前的链表：");
 	LNode* p;
-	char ch;
 	p = L->rnext;
 	while (p->data != NULL)
 	{
